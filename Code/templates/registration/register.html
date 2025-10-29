@@ -1,0 +1,157 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ثبت نام</title>
+    <!-- Customized Bootstrap Stylesheet -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link
+      href="https://cdn.jsdelivr.net/gh/rastikerdar/sahel-font@v3.4.0/dist/font-face.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <style>
+      body,
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6,
+      p,
+      a,
+      button,
+      .nav-link,
+      .dropdown-item {
+        font-family: "Sahel", sans-serif !important;
+      }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-8 col-lg-6">
+                <!-- فرم ثبت‌نام -->
+                <div class="login-container bg-white p-4 p-md-5 rounded shadow-sm">
+    
+                    <!-- Header -->
+                    <div class="login-header text-center mb-4">
+                        <div class="icon-box-primary d-inline-flex align-items-center justify-content-center rounded-circle mb-3">
+                            <i class="fas fa-user-plus fs-3"></i>
+                        </div>
+                        <h4 class="fw-bold text-primary">ایجاد حساب کاربری</h4>
+                        <p class="text-muted small">لطفاً اطلاعات خود را وارد کنید</p>
+                    </div>
+    
+                    <!-- Body -->
+                    <div class="login-body">
+                        <form method="post" novalidate>
+                            {% csrf_token %}
+    
+                            <!-- نام کاربری -->
+                            <div class="mb-3">
+                                <label for="{{ form.username.id_for_label }}" class="form-label small text-muted">
+                                    <i class="fas fa-user me-1"></i> نام کاربری
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light">
+                                        <i class="fas fa-user text-primary"></i>
+                                    </span>
+                                    {{ form.username }}
+                                </div>
+                                {% if form.username.errors %}
+                                    <div class="text-danger small mt-1">
+                                        {% for error in form.username.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+    
+                            <!-- ایمیل -->
+                            <div class="mb-3">
+                                <label for="{{ form.email.id_for_label }}" class="form-label small text-muted">
+                                    <i class="fas fa-envelope me-1"></i> ایمیل
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light">
+                                        <i class="fas fa-envelope text-primary"></i>
+                                    </span>
+                                    {{ form.email }}
+                                </div>
+                                {% if form.email.errors %}
+                                    <div class="text-danger small mt-1">
+                                        {% for error in form.email.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+    
+                            <!-- رمز عبور -->
+                            <div class="mb-3">
+                                <label for="{{ form.password1.id_for_label }}" class="form-label small text-muted">
+                                    <i class="fas fa-lock me-1"></i> رمز عبور
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light">
+                                        <i class="fas fa-lock text-primary"></i>
+                                    </span>
+                                    {{ form.password1 }}
+                                </div>
+                                {% if form.password1.errors %}
+                                    <div class="text-danger small mt-1">
+                                        {% for error in form.password1.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+    
+                            <!-- تکرار رمز عبور -->
+                            <div class="mb-4">
+                                <label for="{{ form.password2.id_for_label }}" class="form-label small text-muted">
+                                    <i class="fas fa-lock me-1"></i> تکرار رمز عبور
+                                </label>
+                                <div class="input-group">
+                                    <span class="input-group-text bg-light">
+                                        <i class="fas fa-redo text-primary"></i>
+                                    </span>
+                                    {{ form.password2 }}
+                                </div>
+                                {% if form.password2.errors %}
+                                    <div class="text-danger small mt-1">
+                                        {% for error in form.password2.errors %}
+                                            <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+    
+                            <!-- دکمه -->
+                            <button type="submit" class="btn btn-primary btn-login w-100 fw-medium">
+                                <i class="fas fa-user-plus me-2"></i>
+                                ثبت‌نام
+                            </button>
+                        </form>
+                    </div>
+    
+                    <!-- Footer -->
+                    <div class="login-footer text-center mt-4">
+                        <small class="text-muted">
+                            حساب کاربری دارید؟
+                            <a href="{% url 'login' %}" class="text-primary fw-medium">وارد شوید</a>
+                        </small>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

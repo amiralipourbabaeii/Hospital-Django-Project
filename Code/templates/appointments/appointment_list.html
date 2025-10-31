@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">لیست نوبت‌ها</h1>
+
+    {% if appointments %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>نام بیمار</th>
+                    <th>تاریخ نوبت</th>
+                    <th>توضیحات</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for appointment in appointments %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ appointment.patient_name }}</td>
+                    <td>{{ appointment.appointment_date }}</td>
+                    <td>{{ appointment.notes }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <div class="alert alert-info">
+            هنوز هیچ نوبتی ثبت نشده است.
+        </div>
+    {% endif %}
+
+    <a href="{% url 'appointment_create' %}" class="btn btn-primary mt-3">ثبت نوبت جدید</a>
+</div>
+{% endblock %}

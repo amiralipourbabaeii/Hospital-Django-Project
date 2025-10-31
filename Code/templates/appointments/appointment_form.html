@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="mb-4">ثبت نوبت جدید</h1>
+
+    <form method="POST" novalidate>
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+
+        <!-- نام بیمار -->
+        <div class="mb-3">
+            <label for="id_patient_name" class="form-label">نام بیمار</label>
+            <input type="text" name="patient_name" class="form-control" id="id_patient_name"
+                   value="{{ form.patient_name.value|default_if_none:'' }}">
+            {% if form.patient_name.errors %}
+                <div class="text-danger">{{ form.patient_name.errors }}</div>
+            {% endif %}
+        </div>
+
+        <!-- تاریخ نوبت -->
+        <div class="mb-3">
+            <label for="id_appointment_date" class="form-label">تاریخ نوبت</label>
+            <input type="date" name="appointment_date" class="form-control" id="id_appointment_date"
+                   value="{{ form.appointment_date.value|default_if_none:'' }}">
+            {% if form.appointment_date.errors %}
+                <div class="text-danger">{{ form.appointment_date.errors }}</div>
+            {% endif %}
+        </div>
+
+        <!-- ساعت نوبت -->
+        <div class="mb-3">
+            <label for="id_appointment_time" class="form-label">ساعت نوبت</label>
+            <input type="time" name="appointment_time" class="form-control" id="id_appointment_time"
+                   value="{{ form.appointment_time.value|default_if_none:'' }}">
+            {% if form.appointment_time.errors %}
+                <div class="text-danger">{{ form.appointment_time.errors }}</div>
+            {% endif %}
+        </div>
+
+        <!-- توضیحات -->
+        <div class="mb-3">
+            <label for="id_notes" class="form-label">توضیحات</label>
+            <textarea name="notes" class="form-control" id="id_notes">{{ form.notes.value|default_if_none:'' }}</textarea>
+            {% if form.notes.errors %}
+                <div class="text-danger">{{ form.notes.errors }}</div>
+            {% endif %}
+        </div>
+
+        <button type="submit" class="btn btn-primary">ثبت نوبت</button>
+    </form>
+</div>
+{% endblock %}

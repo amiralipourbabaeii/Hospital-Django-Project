@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     
     # locals
     'main',
-    'accounts'
+    'accounts',
+    'appointments',
 ]
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
